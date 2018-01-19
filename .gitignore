@@ -1,4 +1,9 @@
 .idea
+.idea/*
 config.py
 
+chat_ids.json
+
 .DS_Store
+
+__pycache__*
