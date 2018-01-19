@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.5
+from threading import Thread
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
@@ -94,6 +95,7 @@ def main():
     # Start the Bot
     updater.start_polling()
 
+
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
     # start_polling() is non-blocking and will stop the bot gracefully.
@@ -101,7 +103,18 @@ def main():
 
 
 
+class Api(Thread):
+    def run(self):
+        from flask_api import FlaskAPI
+        app = FlaskAPI(__name__)
+        app.run(debug=False)
+
+
 if __name__ == '__main__':
+    print("Starting api...")
+    api = Api()
+    api.start()
+    print("Starting bot...")
     main()
     save_chats()
 
