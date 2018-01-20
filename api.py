@@ -63,10 +63,10 @@ def send_file():
             bot.send_document(chat_id=cid, document=f, filename=os.path.basename(f.name), caption=text)
 
             f.close()
-            
+
 
         return jsonify({"status" : "ok"})
     abort(400)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=64501)
