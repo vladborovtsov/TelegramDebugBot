@@ -103,17 +103,7 @@ def main():
 
 
 
-class Api(Thread):
-    def run(self):
-        from flask_api import FlaskAPI
-        app = FlaskAPI(__name__)
-        app.run(debug=False)
-
-
 if __name__ == '__main__':
-    print("Starting api...")
-    api = Api()
-    api.start()
     print("Starting bot...")
     main()
     save_chats()
